@@ -205,5 +205,63 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
+<!--Delayed Popup-->
+<div id="newsletter-form" class="white-popup mfp-hide">
+  <h2>Don't do that!</h2>
+  <p>A vai, fica mais um pouco, toma um mate.</p>
+
+  <!-- Begin MailChimp Signup Form -->
+        (Form Code Goes Here)
+  <!--End mc_embed_signup-->
+
+</div> 
+<!--End Delayed Popup-->
+
 	</body>
+
+<style type="text/css">
+.white-popup {
+  position: relative;
+  background: #FFF;
+  padding: 20px;
+  width: auto;
+  max-width: 500px;
+  margin: 20px auto;
+  > * {
+    margin-top: 0;
+  }
+}
+
+</style>
+
+<script type="text/javascript">
+	
+
+// Exit intent
+function addEvent(obj, evt, fn) {
+  if (obj.addEventListener) {
+    obj.addEventListener(evt, fn, false);
+  } else if (obj.attachEvent) {
+    obj.attachEvent("on" + evt, fn);
+  }
+}
+
+// Exit intent trigger
+addEvent(document, 'mouseout', function(evt) {
+  if (evt.toElement === null && evt.relatedTarget === null && !localStorage.getItem('exitintent_show')) {
+    $.magnificPopup.open({
+      items: {
+        src: '#newsletter-form' //ID of inline element
+      },
+      type: 'inline',
+      removalDelay: 500, //Delaying the removal in order to fit in the animation of the popup
+      mainClass: 'mfp-fade mfp-fade-side', //The actual animation
+    });
+    //localStorage.setItem('exitintent_show', 'true'); // Set the flag in localStorage
+  }
+});
+
+
+
+</script>	
 </html>
