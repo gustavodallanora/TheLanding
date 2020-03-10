@@ -295,8 +295,9 @@ function addEvent(obj, evt, fn) {
 // Exit intent trigger
 addEvent(document, 'mouseout', function(evt) {
 
-    if (evt.toElement == null && evt.relatedTarget == null ) {
+    if (evt.toElement == null && evt.relatedTarget == null && !localStorage.getItem('exitbox_shown')) {
         $('.lightbox').slideDown();
+        localStorage.setItem('exitbox_shown', 'true');
     };
 
 });
