@@ -10,12 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<!-- Magnific Popup core CSS file -->
-		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css">
-		<!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<!-- Magnific Popup core JS file -->
-		<script src="//cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -198,7 +193,6 @@
 				<div class="inner">
 					<ul class="menu">
 						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-						<li>&copy; magnificPopup Created by <a href="http://dimsemenov.com" rel="author">Dmitry Semenov</a>. Collaborator <a href="https://twitter.com/ChubbyNinjaa">Danny Hearnah</a></li>
 					</ul>
 				</div>
 			</footer>
@@ -212,60 +206,104 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
-<!--Delayed Popup-->
-<div id="newsletter-form" class="white-popup mfp-hide">
-  <h2>Don't do that!</h2>
-  <p>A vai, fica mais um pouco, toma um mate.</p>
-
-  <!-- Begin MailChimp Signup Form -->
-        (Form Code Goes Here)
-  <!--End mc_embed_signup-->
-
-</div> 
-<!--End Delayed Popup-->
-
-	</body>
+<div class="lightbox" id="text">
+    <div class="box">
+        <a class="close" href="#">X</a>
+        <h2>Don't do that!</h2>
+        <div class="content">
+        	<p>A vai, fica mais um pouco, toma um mate.</p>
+        </div>
+    </div>
+</div>
 
 <style type="text/css">
-.white-popup {
-  position: relative;
-  background: #FFF;
-  padding: 20px;
-  width: auto;
-  max-width: 500px;
-  margin: 20px auto;
-  > * {
-    margin-top: 0;
-  }
+
+.lightbox {
+    /** Hide the lightbox */
+    display: none;
+
+    /** Apply basic lightbox styling */
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    color:#333333;
+    }
+
+.lightbox:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.lightbox .box {
+    width: -webkit-min-content;
+    width: -moz-min-content;
+    width: min-content;
+    min-width:500px;
+    margin: 2% auto;
+    padding:20px;
+    background-color:#FFF;
+    box-shadow: 0px 1px 26px -3px #777777;
+    }
+
+    .lightbox .title {
+        margin:0;
+        padding:0 0 10px 0px;
+        border-bottom:1px #ccc solid;
+        font-size:22px;
+        }
+
+    .lightbox .content {
+        display:block;
+        padding:10px 0 0 0px;
+        font-size:18px;
+        line-height:22px;
+        }
+
+    .lightbox .close {
+        float:right;
+        display:block;
+        text-decoration:none;
+        font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size:22px;
+        color:#858585;
+        }
+
+.lightbox .open {
+    /** Show lightbox when mouse leaves the browser window */
+    display: block;
+    outline: none;
 }
 
 </style>
 
 <script type="text/javascript">
 	
-
 // Exit intent
 function addEvent(obj, evt, fn) {
-  if (obj.addEventListener) {
-    obj.addEventListener(evt, fn, false);
-  } else if (obj.attachEvent) {
-    obj.attachEvent("on" + evt, fn);
-  }
+    if (obj.addEventListener) {
+        obj.addEventListener(evt, fn, false);
+    }
+    else if (obj.attachEvent) {
+        obj.attachEvent("on" + evt, fn);
+    }
 }
 
 // Exit intent trigger
 addEvent(document, 'mouseout', function(evt) {
-  if (evt.toElement === null && evt.relatedTarget === null && !localStorage.getItem('exitintent_show')) {
-    $.magnificPopup.open({
-      items: {
-        src: '#newsletter-form' //ID of inline element
-      },
-      type: 'inline',
-      removalDelay: 500, //Delaying the removal in order to fit in the animation of the popup
-      mainClass: 'mfp-fade mfp-fade-side', //The actual animation
-    });
-    //localStorage.setItem('exitintent_show', 'true'); // Set the flag in localStorage
-  }
+
+    if (evt.toElement == null && evt.relatedTarget == null ) {
+        $('.lightbox').slideDown();
+    };
+
+});
+
+// Closing the Popup Box
+$('a.close').click(function(){
+    $('.lightbox').slideUp();
 });
 
 
