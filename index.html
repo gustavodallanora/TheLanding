@@ -207,11 +207,33 @@
 			<script src="assets/js/main.js"></script>
 
 <div class="lightbox" id="text">
-    <div class="box">
-        <a class="close" href="#">X</a>
-        Don't do that!
-        <div class="content">
-        	<p>A vai, fica mais um pouco, toma um mate.</p>
+	<div class="box">
+    <a class="close" href="#">X</a>
+    
+    <div class="content">
+
+	<div class="inner">
+		<h2>Don't do that!</h2>
+		<p>A vai, fica mais um pouco, toma um mate. Ou deixa teu contato que vamos atras de ti.</p>							
+		<section>
+			<form method="post" action="#">
+				<div class="fields">
+					<div class="field half">
+						<label for="name">Name</label>
+						<input type="text" name="name" id="name" />
+					</div>
+					<div class="field half">
+						<label for="email">Email</label>
+						<input type="text" name="email" id="email" />
+					</div>
+				</div>
+				<ul class="actions">
+					<li><a href="" class="button submit">Enviar</a></li>
+				</ul>
+			</form>
+		</section>
+	</div>
+        	
         </div>
     </div>
 </div>
@@ -229,7 +251,7 @@
     height: 100%;
     top: 0;
     left: 0;
-    color:#333333;
+    /** color:#333333; */
     }
 
 .lightbox:after {
@@ -242,10 +264,10 @@
     width: -webkit-min-content;
     width: -moz-min-content;
     width: min-content;
-    min-width:500px;
+    min-width:600px;
     margin: 2% auto;
     padding:20px;
-    background-color:#FFF;
+    background-color:#312450;
     box-shadow: 0px 1px 26px -3px #777777;
     }
 
@@ -269,7 +291,7 @@
         text-decoration:none;
         font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size:22px;
-        color:#858585;
+        /** color:#858585; */
         }
 
 .lightbox .open {
@@ -290,14 +312,15 @@ function addEvent(obj, evt, fn) {
     else if (obj.attachEvent) {
         obj.attachEvent("on" + evt, fn);
     }
+    localStorage.removeItem('exitboxv2_shown');
 }
 
 // Exit intent trigger
 addEvent(document, 'mouseout', function(evt) {
 
-    if (evt.toElement == null && evt.relatedTarget == null && !localStorage.getItem('exitbox_shown')) {
+    if (evt.toElement == null && evt.relatedTarget == null && !localStorage.getItem('exitboxv2_shown')) {
         $('.lightbox').slideDown();
-        localStorage.setItem('exitbox_shown', 'true');
+        localStorage.setItem('exitboxv2_shown', 'true');
     };
 
 });
